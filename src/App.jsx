@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ReactDOM } from "react";
 import Greet from './components/Greeter'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -6,11 +6,23 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 const App = () => {
+    const [loaded, setLoaded] = useState(false)
     const [username, setUsername] = useState(" ");
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoaded(true);
+        }, 3000)
+    })
+ if (loaded === false) {
+    return(
+        <h2>Website loading...</h2>
+    )
+}
     const handleTextChange = e => {
         setUsername(e.target.value)
-    }
-    return( 
+ }   
+ return( 
     <div>
         <Greet greeting= "Hey Hey Hey, my name is" name= "Justin"/>
         <Greet greeting= "Hey there bud! My name is" name= "Jen"/>
